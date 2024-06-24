@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ict.admininterviewdotboot.mapper.AdminMapper">
+    <select id="selectAdmin" resultType="AdminVO">
+        SELECT * FROM Admin_t WHERE a_id = #{a_id}
+    </select>
+
+    <select id="getReviewList" resultType="ReviewVO">
+        SELECT * FROM Review_t ORDER BY r_idx
+    </select>
+</mapper>
