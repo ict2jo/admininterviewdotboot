@@ -34,7 +34,7 @@
                 .csrf(csrf -> csrf.disable())
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .authorizeHttpRequests(authorize -> authorize
-                                .requestMatchers("/api/adminlogin", "/review/reviewlist", "review/reviewdetail").permitAll()
+                                .requestMatchers("/api/**", "/review/**", "inquiry/**").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .logout(logout -> logout
