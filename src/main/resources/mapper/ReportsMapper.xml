@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ict.admininterviewdotboot.mapper.ReportMapper">
+    <select id="getreportlist" resultType="ReportVO">
+        SELECT *
+            FROM Report_t
+            LEFT JOIN Review_t ON Report_t.r_idx = Review_t.r_idx
+            LEFT JOIN Success_t ON Success_t.s_idx = Report_t.s_idx
+            ORDER BY Report_t.rep_idx DESC;
+    </select>
+    <select id="getReportDetail"  resultType="ReportVO" parameterType="String">
+        SELECT *
+        FROM Report_t
+            LEFT JOIN Review_t ON Report_t.r_idx = Review_t.r_idx
+            LEFT JOIN Success_t ON Success_t.s_idx = Report_t.s_idx
+            LEFT JOIN User_t ON User_t.u_idx = Report_t.u_idx
+        WHERE Report_t.rep_idx = #{rep_idx};
+    </select>
+    <update id="getreportclick1" parameterType="String">
+        UPDATE User_t
+            SET active = 1
+            WHERE u_idx = #{u_idx}
+    </update>
+    <update id="getreportclick2" parameterType="String">
+        UPDATE User_t
+            SET u_report = u_report + 1
+            WHERE u_idx = #{u_idx}
+    </update>
+    <update id="getreportclick3" parameterType="String">
+        UPDATE Report_t
+            SET rep_active = 1,
+            rep_okdate = NOW()
+            WHERE u_idx = #{u_idx}
+    </update>
+</mapper>
