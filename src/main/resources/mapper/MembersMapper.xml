@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ict.admininterviewdotboot.mapper.MemberMapper">
+    <!-- 아이디로 users 테이블에 있는지 찾기 --> 
+    <select id="selectMember"  resultType="UserVO">
+        SELECT * FROM Admin_t WHERE a_id = #{a_id}
+    </select>
+</mapper>
