@@ -35,4 +35,9 @@
             rep_okdate = NOW()
             WHERE u_idx = #{u_idx}
     </update>
+    <update id="getreportclick4" parameterType="String">
+        UPDATE Report_t
+            SET a_id = #{a_id},
+            WHERE u_idx = #{u_idx}
+    </update>
 </mapper>

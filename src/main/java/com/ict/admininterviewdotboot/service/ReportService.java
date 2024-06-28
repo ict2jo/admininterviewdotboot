@@ -22,13 +22,14 @@ public class ReportService {
     }
 
     @Transactional
-        public int getreportclick(String u_idx) {
-            int result1 = reportMapper.getreportclick1(u_idx);
-            int result2 = reportMapper.getreportclick2(u_idx);
-            int result3 = reportMapper.getreportclick3(u_idx);
+        public int getreportclick(ReportVO rvo) {
+            int result1 = reportMapper.getreportclick1(rvo);
+            int result2 = reportMapper.getreportclick2(rvo);
+            int result3 = reportMapper.getreportclick3(rvo);
+            int result4 = reportMapper.getreportclick4(rvo);
 
             // 모든 업데이트가 성공했는지 확인
-            if (result1 > 0 && result2 > 0 && result3 > 0) {
+            if (result1 > 0 && result2 > 0 && result3 > 0 && result4 > 0) {
                 return 1;
             } else {
                 throw new RuntimeException("업데이트 중 오류 발생");

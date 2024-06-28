@@ -1,30 +1,43 @@
 package com.ict.admininterviewdotboot.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ict.admininterviewdotboot.service.AdminService;
 import com.ict.admininterviewdotboot.vo.AdminVO;
 
-
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/admin")
 public class AdminController {
     @Autowired
     private AdminService adminService;
-
-    @PostMapping("/adminlogin")
-    public ResponseEntity<?> loginAdmin(@RequestBody AdminVO admin) {
-        System.out.println("here");
-        return adminService.authenticate(admin);
+ 
+    public AdminController(AdminService adminService) {
+        this.adminService = adminService;
     }
 
-    
+    @GetMapping("/adminlist")
+    public List<AdminVO> getadminlist() {
+        return adminService.getadminlist();
+    }
+    @GetMapping("/admindetail")
+    public List<AdminVO> getAdminDetail(@RequestParam("a_idx") String a_idx) {
+        return adminService.getAdminDetail(a_idx);
+    }
+    @PostMapping("/adminedit")
+    public int editadmin(@RequestBody AdminVO adminVO) {
+        return adminService.editadmin(adminVO);
+    }
+    @PostMapping("/admindelete")
+    public int admindelete(AdminVO adminVO) {
+        System.out.println(adminVO.getA_idx());
+        return adminService.admindelete(adminVO);
+    }
 }

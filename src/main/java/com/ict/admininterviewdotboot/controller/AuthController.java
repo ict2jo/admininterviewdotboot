@@ -4,12 +4,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ict.admininterviewdotboot.jwt.JWTUtil;
-import com.ict.admininterviewdotboot.service.AdminService;
 import com.ict.admininterviewdotboot.service.AuthService;
-import com.ict.admininterviewdotboot.service.GuestService;
 import com.ict.admininterviewdotboot.service.MyUserDetailsService;
+import com.ict.admininterviewdotboot.vo.AdminVO;
 import com.ict.admininterviewdotboot.vo.DataVO;
-import com.ict.admininterviewdotboot.vo.MembersVO;
 import com.ict.admininterviewdotboot.vo.UserVO;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,20 +27,14 @@ public class AuthController {
     private AuthService authService;
 
     @Autowired
-    private GuestService guestService;
-
-    @Autowired
-    private AdminService adminService;
-    
-    @Autowired
     private JWTUtil jwtUtil;
     
     @Autowired
     private MyUserDetailsService userDetailsService;
 
     @PostMapping("/login")
-    public ResponseEntity<DataVO> postMethodName(@RequestBody MembersVO mvo) {
-         DataVO dataVO = authService.authenticate(mvo);
+    public ResponseEntity<DataVO> postMethodName(@RequestBody AdminVO avo) {
+         DataVO dataVO = authService.authenticate(avo);
          if(dataVO != null){
              System.out.println("아이디안오나");
             return ResponseEntity.ok(dataVO);
@@ -51,6 +43,11 @@ public class AuthController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
          }
        
+    }
+    @PostMapping("/create")
+    public ResponseEntity<?> createUser(@RequestBody AdminVO avo) {
+      int res = authService.createUser(avo);
+      return new ResponseEntity<>(res, HttpStatus.CREATED);
     }
     
     @GetMapping("/userInfo")

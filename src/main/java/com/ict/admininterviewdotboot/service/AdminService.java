@@ -6,22 +6,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.ict.admininterviewdotboot.mapper.MemberMapper;
+import com.ict.admininterviewdotboot.mapper.AdminMapper;
 import com.ict.admininterviewdotboot.vo.AdminVO;
-import com.ict.admininterviewdotboot.vo.MembersVO;
 
 @Service
 public class AdminService {
      @Autowired
-    private MemberMapper memberMapper;
-
-    public List<MembersVO> getAdminList(){
-        return memberMapper.getAdminList();
-    }
+    private AdminMapper adminMapper;
 
     public ResponseEntity<?> authenticate(AdminVO admin) {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'authenticate'");
+    }
+
+    public List<AdminVO> getadminlist(){
+        return adminMapper.getadminlist();
+    }
+    public List<AdminVO> getAdminDetail(String a_idx){
+        return adminMapper.getAdminDetail(a_idx);
+    }
+    public int editadmin(AdminVO adminVO){
+        return adminMapper.editadmin(adminVO);
+    }
+    public int admindelete(AdminVO adminVO){
+        return adminMapper.admindelete(adminVO);
     }
 
 }

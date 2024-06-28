@@ -26,15 +26,16 @@ public class SecurityConfig {
 
     private UserDetailsService userDetailsService;
     private JwtRequestFilter jwtRequestFilter;
-    private OAuth2AuthenticaitonSuccessHandler oAuth2AuthenticaitonSuccessHandler;
+    //private OAuth2AuthenticaitonSuccessHandler oAuth2AuthenticaitonSuccessHandler;
 
     // 생성자를 통해 필요한 빈들을 주입받음
     public SecurityConfig(UserDetailsService userDetailsService,
-                          JwtRequestFilter jwtRequestFilter,
-                          OAuth2AuthenticaitonSuccessHandler oAuth2AuthenticaitonSuccessHandler) {
+                          JwtRequestFilter jwtRequestFilter
+                          //OAuth2AuthenticaitonSuccessHandler oAuth2AuthenticaitonSuccessHandler
+                          ) {
         this.userDetailsService = userDetailsService;
         this.jwtRequestFilter = jwtRequestFilter;
-        this.oAuth2AuthenticaitonSuccessHandler = oAuth2AuthenticaitonSuccessHandler;
+       // this.oAuth2AuthenticaitonSuccessHandler = oAuth2AuthenticaitonSuccessHandler;
     }
 
     // SecurityFilterChain 빈 설정
@@ -44,7 +45,7 @@ public class SecurityConfig {
         .csrf(csrf -> csrf.disable()) // CSRF 보안 기능 비활성화
         .cors(cors -> cors.configurationSource(corsConfigurationSource())) // CORS 설정 적용
         .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/api/**", "/review/**", "/inquiry/**", "/report/**").permitAll() // 특정 URL 패턴에 대해 권한 없이 접근 허용
+                        .requestMatchers("/api/**", "/review/**", "/inquiry/**", "/report/**", "/admin/**").permitAll() // 특정 URL 패턴에 대해 권한 없이 접근 허용
                         .anyRequest().authenticated() // 그 외 모든 요청은 인증 필요
         )
         .logout(logout -> logout
@@ -52,44 +53,39 @@ public class SecurityConfig {
                         .logoutSuccessHandler((request, response, authentication) -> {
                             response.setStatus(200); // 로그아웃 성공 시 HTTP 응답 상태 코드 200으로 설정
                         })
-        );
-        
-        // JWT 인증 필터를 UsernamePasswordAuthenticationFilter 앞에 추가
-        http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
-
-        return http.build(); // 구성 완료된 HttpSecurity 객체 반환
+        )
+        // 먼저 토큰 검사 
+        .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+        return http.build();
     }
 
-    // 비밀번호 인코더 빈 설정
     @Bean
-    PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder(); // BCrypt 알고리즘을 사용하는 비밀번호 인코더 반환
+    PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
     }    
 
-    // AuthenticationManager 빈 설정
     @Bean
     AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
-        return authConfig.getAuthenticationManager(); // 인증 관리자 빈 반환
+        return authConfig.getAuthenticationManager();
     }
 
-    // CORS 설정을 담당하는 CorsConfigurationSource 빈 설정
     @Bean    
-    CorsConfigurationSource corsConfigurationSource() {
-       CorsConfiguration config = new CorsConfiguration(); // CORS 설정 객체 생성
-        config.setAllowCredentials(true); // 자격 증명 허용 설정
-        config.addAllowedOriginPattern("*"); // 모든 오리진 허용
-        config.addAllowedHeader("*"); // 모든 헤더 허용
-        config.addAllowedMethod("*"); // 모든 HTTP 메서드 허용
+     CorsConfigurationSource corsConfigurationSource() {
+       CorsConfiguration config = new CorsConfiguration();
+        config.setAllowCredentials(true);
+        config.addAllowedOriginPattern("*");
+        config.addAllowedHeader("*");
+        config.addAllowedMethod("*");
 
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource(); // URL 기반 CorsConfigurationSource 객체 생성
-        source.registerCorsConfiguration("/**", config); // 모든 경로에 대해 CORS 설정 적용
-
-        return source; // 구성된 CorsConfigurationSource 객체 반환
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", config);
+        return source;
     }
 
-    // OAuth2User를 반환하는 사용자 서비스 빈 설정
+    // CustomOAuth2userService 클래스는 사용자 정보를 가져오는 로직을 사용자 정의할 수 있는 클래스 
+    // CustomOAuth2userService 클래스는 OAuth2UserService를 상속 받는 클래스이다.
     @Bean
-    OAuth2UserService<OAuth2UserRequest, OAuth2User> oAuth2UserService() {
-        return new CustomOAuth2userService(); // 사용자 정보를 가져오는 로직을 사용자 정의할 수 있는 OAuth2UserService 빈 반환
+    OAuth2UserService<OAuth2UserRequest, OAuth2User> oAuth2UserService(){
+        return new CustomOAuth2userService();
     }
 }

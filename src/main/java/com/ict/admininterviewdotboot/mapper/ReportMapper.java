@@ -10,7 +10,8 @@ import com.ict.admininterviewdotboot.vo.ReportVO;
 public interface ReportMapper {
     List<ReportVO> getreportlist();
     List<ReportVO> getReportDetail(String rep_idx);
-    int getreportclick1(String u_idx);
-    int getreportclick2(String u_idx);
-    int getreportclick3(String u_idx);
+    int getreportclick1(ReportVO rvo);
+    int getreportclick2(ReportVO rvo);
+    int getreportclick3(ReportVO rvo);
+    int getreportclick4(ReportVO rvo);
 }

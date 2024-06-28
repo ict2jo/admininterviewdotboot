@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ict.admininterviewdotboot.service.ReportService;
 import com.ict.admininterviewdotboot.vo.ReportVO;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 
 @RestController
@@ -35,9 +34,9 @@ public class ReportController {
     }
     
     @PostMapping("/reportclick")
-    public int getreportclick(@RequestParam String u_idx) {
+    public int getreportclick(@RequestParam ReportVO rvo) {
         System.out.println("오나?");
-        return reportService.getreportclick(u_idx);
+        return reportService.getreportclick(rvo);
     }
     
 }
