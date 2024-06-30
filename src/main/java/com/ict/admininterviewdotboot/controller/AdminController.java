@@ -3,6 +3,8 @@ package com.ict.admininterviewdotboot.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -32,9 +34,13 @@ public class AdminController {
         return adminService.getAdminDetail(a_idx);
     }
     @PostMapping("/adminedit")
-    public int editadmin(@RequestBody AdminVO adminVO) {
-        return adminService.editadmin(adminVO);
+    public  ResponseEntity<?> createUser(@RequestBody AdminVO avo) {
+        int res = adminService.editadmin(avo);
+        return new ResponseEntity<>(res, HttpStatus.CREATED);
     }
+
+
+
     @PostMapping("/admindelete")
     public int admindelete(AdminVO adminVO) {
         System.out.println(adminVO.getA_idx());
