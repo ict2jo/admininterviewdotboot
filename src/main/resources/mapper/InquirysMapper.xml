@@ -10,7 +10,7 @@
     <select id="getInquiryDetail"  resultType="InquiryVO" parameterType="String">
         SELECT *
         FROM Inquiry
-        INNER JOIN User_t ON Inquiry.u_idx = User_t.u_idx
+        INNER JOIN User_t ON Inquiry.id = User_t.id
         WHERE Inquiry.i_idx = #{i_idx};
     </select>
     <update id="updatemail" parameterType="InquiryVO">

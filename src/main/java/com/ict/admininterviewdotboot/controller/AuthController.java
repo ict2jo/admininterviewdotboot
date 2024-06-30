@@ -49,6 +49,7 @@ public class AuthController {
       int res = authService.createUser(avo);
       return new ResponseEntity<>(res, HttpStatus.CREATED);
     }
+  
     
     @GetMapping("/userInfo")
     public ResponseEntity<UserVO> getUserInfo(@RequestParam("token") String token) throws Exception {

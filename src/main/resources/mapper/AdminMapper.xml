@@ -17,7 +17,8 @@
             SET a_id = #{a_id}, 
                 a_name = #{a_name}, 
                 a_phone = #{a_phone}, 
-                a_email = #{a_email}
+                a_email = #{a_email},
+                a_pwd =  #{a_pwd}
             WHERE a_idx = #{a_idx};
     </update>
     <update id="admindelete" parameterType="AdminVO">
