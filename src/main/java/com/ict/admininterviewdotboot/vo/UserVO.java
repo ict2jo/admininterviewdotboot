@@ -16,6 +16,7 @@ public class UserVO implements UserDetails{
     private String a_pwd = "";
     private String a_email = "";
     private String a_name = "";
+    private int a_status = 0;
     
     private List<GrantedAuthority> authorities = new ArrayList<>();
     @Override

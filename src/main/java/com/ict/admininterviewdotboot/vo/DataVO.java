@@ -15,7 +15,6 @@ public class DataVO {
     private String token;
     private String message;
     private UserDetails userDetails;
-
     // 사용 방법
     // DataVO dataVO = new DataVO()
     // dataVO.setSuccess(true);
