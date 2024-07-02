@@ -21,5 +21,9 @@ public class ReviewService {
     public List<ReviewVO> getReviewDetail(){
         return reviewMapper.getReviewDetail();
     }
+
+    public int deleteReview(ReviewVO reviewVO){
+        return reviewMapper.deleteReview(reviewVO);
+    }
     
 } 
