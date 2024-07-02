@@ -9,4 +9,5 @@ import java.util.List;
 public interface ReviewMapper {
     List<ReviewVO> getReviewList();
     List<ReviewVO> getReviewDetail();
+    int deleteReview(ReviewVO reviewVO);
 }

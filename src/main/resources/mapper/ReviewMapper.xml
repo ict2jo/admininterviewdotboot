@@ -10,4 +10,9 @@
     <select id="getReviewDetail" resultType="ReviewVO">
         SELECT * FROM Review_t WHERE idx = #{r_idx}
     </select>
+    <update id="deleteReview" parameterType="ReviewVO">
+        UPDATE Review_t
+        SET active = #{active}
+        WHERE r_idx = #{r_idx}
+    </update>
 </mapper>

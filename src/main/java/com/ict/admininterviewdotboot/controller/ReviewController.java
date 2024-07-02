@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 
 @RestController
@@ -26,5 +28,11 @@ public class ReviewController {
     public List<ReviewVO> getReviewDetail(){
         return reviewService.getReviewDetail();
     }
+    @PostMapping("/deletereview")
+    public int deleteReview(@RequestBody ReviewVO reviewVO) {
+        reviewVO.setActive("1");
+        return reviewService.deleteReview(reviewVO);
+    }
+    
     
 }
