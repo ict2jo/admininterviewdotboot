@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ict.admininterviewdotboot.mapper.TossMapper">
+
+    <select id="payList" resultType="TossVO">
+        select *
+        from Toss_t
+    </select>
+
+    <update id="cancelPayment" parameterType="TossVO">
+        update Toss_t 
+        set canceledAt=#{canceledAt}, payStatus="취소완료"
+        where t_idx=#{t_idx}
+    </update>
+    <update id="userPayCount2" parameterType="TossVO">
+        UPDATE User_t u
+        INNER JOIN Toss_t t ON u.id = t.id
+        SET u.payCount = u.payCount - #{statusCount}
+        WHERE t.t_idx = #{t_idx}
+    </update>
+</mapper>
