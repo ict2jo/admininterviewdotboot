@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.ict.admininterviewdotboot.mapper.AdminMapper;
 import com.ict.admininterviewdotboot.vo.AdminVO;
+import com.ict.admininterviewdotboot.vo.UserVO;
 
 @Service
 public class AdminService {
@@ -45,5 +46,7 @@ public class AdminService {
     public int admindelete(AdminVO adminVO){
         return adminMapper.admindelete(adminVO);
     }
-
+    public AdminVO getUserId(String a_id) {
+    return adminMapper.getUserId(a_id);
+  }
 }

@@ -15,7 +15,11 @@
     </select>
     <update id="updatemail" parameterType="InquiryVO">
         UPDATE Inquiry
-            SET i_active = 1
+            SET i_active = 1,
+            i_answer = #{content},
+            i_answer_title = #{title},
+            i_email = #{email},
+            i_date_ok = NOW()
             WHERE i_idx = #{i_idx};
     </update>
 </mapper>

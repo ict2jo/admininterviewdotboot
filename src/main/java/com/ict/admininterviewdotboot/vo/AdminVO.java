@@ -4,5 +4,6 @@ import lombok.Data;
 
 @Data
 public class AdminVO {
-    private String a_idx, a_id, a_pwd, a_name, a_phone, a_email, a_status;
+    private String a_idx, a_id, a_pwd, a_name, a_phone, a_email;
+    int a_status;
 }

@@ -35,11 +35,10 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<DataVO> postMethodName(@RequestBody AdminVO avo) {
          DataVO dataVO = authService.authenticate(avo);
+         System.out.println(dataVO);
          if(dataVO != null){
-             System.out.println("아이디안오나");
-            return ResponseEntity.ok(dataVO);
+                return ResponseEntity.ok(dataVO);
          }else{
-            System.out.println("아이디오나");
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
          }
        

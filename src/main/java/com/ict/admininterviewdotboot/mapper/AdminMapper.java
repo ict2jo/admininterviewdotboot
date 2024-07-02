@@ -15,5 +15,6 @@ public interface AdminMapper {
     int editadmin(AdminVO adminVO);
     int admindelete(AdminVO adminVO);
     int createUser(AdminVO adminVO);
+    AdminVO getUserId(String id);
 }
 

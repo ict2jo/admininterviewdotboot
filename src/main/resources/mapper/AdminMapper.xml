@@ -5,7 +5,7 @@
 
 <mapper namespace="com.ict.admininterviewdotboot.mapper.AdminMapper">
     <select id="getadminlist" resultType="AdminVO">
-        SELECT * FROM Admin_t ORDER BY a_status = 1 DESC
+        SELECT * FROM Admin_t WHERE a_status = 0 
     </select>
     <select id="getAdminDetail"  resultType="AdminVO" parameterType="String">
         SELECT *
@@ -30,4 +30,7 @@
         INSERT INTO Admin_t (a_id, a_pwd, a_name, a_phone, a_email, a_status)
         VALUES (#{a_id}, #{a_pwd}, #{a_name}, #{a_phone}, #{a_email}, 0)
     </insert>
+    <select id="getUserId" resultType="AdminVO">
+        SELECT a_id FROM Admin_t WHERE a_id = #{a_id}
+    </select>
 </mapper>
