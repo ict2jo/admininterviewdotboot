@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ict.admininterviewdotboot.service.TossService;
+import com.ict.admininterviewdotboot.vo.InterviewVO;
 import com.ict.admininterviewdotboot.vo.TossVO;
+import com.ict.admininterviewdotboot.vo.UsersVO;
 
 @RestController
 @RequestMapping("/payments")
@@ -24,7 +26,6 @@ public class TossController {
 
     @GetMapping("/payList")
     public List<TossVO> payList() {
-        System.out.println("오냐냐냐");
         return tossService.payList();
     }
 
@@ -52,5 +53,15 @@ public class TossController {
             System.out.println("컨트롤러" + e );
         }
         return null;
+    }
+
+    @GetMapping("/userList")
+    public List<UsersVO> userList() {
+        return tossService.userList();
+    }
+
+    @GetMapping("/interviewList")
+    public List<InterviewVO> interviewList() {
+        return tossService.interviewList();
     }
 }
