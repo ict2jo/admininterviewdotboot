@@ -21,4 +21,15 @@
         SET u.payCount = u.payCount - #{statusCount}
         WHERE t.t_idx = #{t_idx}
     </update>
+
+    <select id="userList" resultType="UsersVO">
+        select *
+        from User_t
+    </select>
+
+    <select id="interviewList" resultType="InterviewVO">
+        SELECT COUNT(*) AS count, interview_date
+        FROM Interview_t
+        GROUP BY DATE(interview_date);
+    </select>
 </mapper>

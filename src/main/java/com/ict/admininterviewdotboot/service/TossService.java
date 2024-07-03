@@ -17,7 +17,9 @@ import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ict.admininterviewdotboot.mapper.TossMapper;
+import com.ict.admininterviewdotboot.vo.InterviewVO;
 import com.ict.admininterviewdotboot.vo.TossVO;
+import com.ict.admininterviewdotboot.vo.UsersVO;
 
 @Service
 public class TossService {
@@ -91,5 +93,13 @@ public class TossService {
             }
             return true;
         }
+
+    public List<UsersVO> userList() {
+        return tossMapper.userList();
+    }
+
+    public List<InterviewVO> interviewList() {
+        return tossMapper.interviewList();
+    }
 }
 
