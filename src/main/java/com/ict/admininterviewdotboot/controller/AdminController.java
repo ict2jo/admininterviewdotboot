@@ -39,11 +39,13 @@ public class AdminController {
         return new ResponseEntity<>(res, HttpStatus.CREATED);
     }
 
-
-
     @PostMapping("/admindelete")
     public int admindelete(AdminVO adminVO) {
-        System.out.println(adminVO.getA_idx());
         return adminService.admindelete(adminVO);
     }
+    @PostMapping("/adminlive")
+    public int adminlive(AdminVO adminVO) {
+        return adminService.adminlive(adminVO);
+    }
+    
 }

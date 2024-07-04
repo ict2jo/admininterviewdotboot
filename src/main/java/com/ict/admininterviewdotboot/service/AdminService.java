@@ -16,8 +16,8 @@ public class AdminService {
      @Autowired
     private AdminMapper adminMapper;
 
-     @Autowired
-     private PasswordEncoder passwordEncoder;
+        @Autowired
+        private PasswordEncoder passwordEncoder;
 
 
     public ResponseEntity<?> authenticate(AdminVO admin) {
@@ -45,6 +45,9 @@ public class AdminService {
 
     public int admindelete(AdminVO adminVO){
         return adminMapper.admindelete(adminVO);
+    }
+    public int adminlive(AdminVO adminVO){
+        return adminMapper.adminlive(adminVO);
     }
     public AdminVO getUserId(String a_id) {
     return adminMapper.getUserId(a_id);
