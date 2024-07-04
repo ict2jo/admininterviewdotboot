@@ -44,10 +44,10 @@ public class JWTUtil {
 
     private Claims extractAllClaims(String token) {
         return Jwts.parserBuilder()
-                   .setSigningKey(getKey())
-                   .build()
-                   .parseClaimsJws(token)
-                   .getBody();
+                    .setSigningKey(getKey())
+                    .build()
+                    .parseClaimsJws(token)
+                    .getBody();
     }
 
     private Boolean isTokenExpired(String token) {
@@ -62,21 +62,16 @@ public class JWTUtil {
         Map<String, Object> claims = new HashMap<>();
         return createToken(claims, id);
     }
-    // 토큰 생성 
     private String createToken(Map<String, Object> claims, String subject) {
-        // 내용을 추가하려면 (중요한 정보를 넣으면 안된다.) 
-        // claims.put("email", "nojm73@nate.com");
-        // claims.put("phone", "010-9732-9110");
         return Jwts.builder()
-                   .setClaims(claims)
-                   .setSubject(subject)
-                   .setIssuedAt(new Date(System.currentTimeMillis()))
-                   .setExpiration(new Date(System.currentTimeMillis() + expiration))
-                   .signWith(getKey(), SignatureAlgorithm.HS256)
-                   .compact();
+                    .setClaims(claims)
+                    .setSubject(subject)
+                    .setIssuedAt(new Date(System.currentTimeMillis()))
+                    .setExpiration(new Date(System.currentTimeMillis() + expiration))
+                    .signWith(getKey(), SignatureAlgorithm.HS256)
+                    .compact();
             
     }
-    // 토큰 검사
     public Boolean validateToken(String token, UserDetails userDetails) {
         final String username = extractUsername(token);
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));

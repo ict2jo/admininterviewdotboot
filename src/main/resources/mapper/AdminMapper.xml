@@ -5,7 +5,7 @@
 
 <mapper namespace="com.ict.admininterviewdotboot.mapper.AdminMapper">
     <select id="getadminlist" resultType="AdminVO">
-        SELECT * FROM Admin_t WHERE a_status = 0 
+        SELECT * FROM Admin_t
     </select>
     <select id="getAdminDetail"  resultType="AdminVO" parameterType="String">
         SELECT *
@@ -24,6 +24,11 @@
     <update id="admindelete" parameterType="AdminVO">
         UPDATE Admin_t
             SET a_status = -1
+            WHERE a_idx = #{a_idx};
+    </update>
+    <update id="adminlive" parameterType="AdminVO">
+        UPDATE Admin_t
+            SET a_status = 0
             WHERE a_idx = #{a_idx};
     </update>
     <insert id="createUser" parameterType="AdminVO"> 

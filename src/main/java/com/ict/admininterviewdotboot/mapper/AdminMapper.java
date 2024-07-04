@@ -14,6 +14,7 @@ public interface AdminMapper {
     List<AdminVO> getAdminDetail(String a_idx);
     int editadmin(AdminVO adminVO);
     int admindelete(AdminVO adminVO);
+    int adminlive(AdminVO adminVO);
     int createUser(AdminVO adminVO);
     AdminVO getUserId(String id);
 }

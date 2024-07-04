@@ -18,17 +18,12 @@ public class MyUserDetailsService implements UserDetailsService {
     @Autowired
     private MemberMapper memberMapper;
 
-    // 로그인 시 사용자명(username)을 기반으로 사용자 정보를 로드하는 메서드
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        // 사용자명을 기반으로 데이터베이스에서 사용자 정보를 조회
         UserVO member = memberMapper.selectMember(username);
-        // 조회된 사용자 정보가 없는 경우 예외를 던짐
         if (member == null) {
             throw new UsernameNotFoundException("User not found with username: " + username);
         }
-        // 조회된 사용자 정보를 기반으로 Spring Security의 UserDetails 객체를 생성하여 반환
-        // 여기서는 사용자명(username)과 비밀번호, 사용자의 권한 정보를 전달함
         return new User(member.getA_id(), member.getPassword(), new ArrayList<>());
     }
 

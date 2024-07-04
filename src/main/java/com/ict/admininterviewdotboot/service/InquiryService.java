@@ -25,7 +25,6 @@ public class InquiryService {
     }
 
     public void sendSimpleMessage(InquiryVO inquiryVO) {
-        System.out.println("email=============================================================================================================="+inquiryVO.getEmail());
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom("ppee1220@gmail.com");
         message.setTo(inquiryVO.getEmail());

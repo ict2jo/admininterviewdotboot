@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ict.admininterviewdotboot.jwt.JWTUtil;
+import com.ict.admininterviewdotboot.service.AdminService;
 import com.ict.admininterviewdotboot.service.AuthService;
 import com.ict.admininterviewdotboot.service.MyUserDetailsService;
 import com.ict.admininterviewdotboot.vo.AdminVO;
@@ -25,6 +26,8 @@ public class AuthController {
     
     @Autowired
     private AuthService authService;
+    @Autowired
+    private AdminService adminService;
 
     @Autowired
     private JWTUtil jwtUtil;
@@ -34,20 +37,20 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<DataVO> postMethodName(@RequestBody AdminVO avo) {
-         DataVO dataVO = authService.authenticate(avo);
-         System.out.println(dataVO);
-         if(dataVO != null){
+        DataVO dataVO = authService.authenticate(avo);
+        System.out.println(dataVO);
+        if(dataVO != null){
                 return ResponseEntity.ok(dataVO);
-         }else{
+        }else{
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
-         }
-       
+        }
+    
     }
     @PostMapping("/create")
     public ResponseEntity<?> createUser(@RequestBody AdminVO avo) {
-      int res = authService.createUser(avo);
-      return new ResponseEntity<>(res, HttpStatus.CREATED);
-    }
+        int res = authService.createUser(avo);
+        return new ResponseEntity<>(res, HttpStatus.CREATED);
+        }
   
     
     @GetMapping("/userInfo")
@@ -61,5 +64,16 @@ public class AuthController {
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
         }
+    }
+    @GetMapping("/idCheck")
+    public ResponseEntity<Boolean> checkIdValidation(@RequestParam("a_id") String a_id) {
+        AdminVO avo = adminService.getUserId(a_id);
+        if (avo != null) {
+        System.out.println("User found with ID: " + a_id);
+        return ResponseEntity.ok(true); 
+    } else {
+        System.out.println("No user found with ID: " + a_id);
+        return ResponseEntity.ok(false); 
+    }
     }
 }

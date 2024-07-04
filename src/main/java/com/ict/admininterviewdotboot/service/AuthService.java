@@ -36,16 +36,11 @@ public class AuthService {
           try {
                Authentication authentication = authenticationManager.authenticate(
                new UsernamePasswordAuthenticationToken(avo.getA_id(), avo.getA_pwd()));
-
-               // DB에서 사용자 정보 가져오기 
                UserVO uvo = userDetailsService.getUserDetail(avo.getA_id());
                String jwt = jwtUtil.generateToken(avo.getA_id());
-
-               // 리턴할 dataVO에 uvo, jwt 를 넣자 
                dataVO.setSuccess(true);
                dataVO.setToken(jwt);
                dataVO.setUserDetails(uvo);
-
                return dataVO;
           } catch (Exception e) {
                dataVO.setSuccess(false);
