@@ -11,7 +11,7 @@
 
     <update id="cancelPayment" parameterType="TossVO">
         update Toss_t 
-        set canceledAt=#{canceledAt}, payStatus="취소완료"
+        set canceledAt=#{canceledAt}, payStatus="취소완료", a_id=#{a_id}
         where t_idx=#{t_idx}
     </update>
     <update id="userPayCount2" parameterType="TossVO">
