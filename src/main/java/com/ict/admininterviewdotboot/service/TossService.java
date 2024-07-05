@@ -80,6 +80,7 @@ public class TossService {
                     String formattedCanceledAt = canceledAtDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
     
                     tvo.setCanceledAt(formattedCanceledAt);
+                    tvo.setA_id(a_id);
                     
                     int res = tossMapper.cancelPayment(tvo);
                     int res2 = tossMapper.userPayCount2(tvo);
