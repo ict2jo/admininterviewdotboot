@@ -4,7 +4,6 @@
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.ict.admininterviewdotboot.mapper.TossMapper">
-
     <select id="payList" resultType="TossVO">
         select *
         from Toss_t

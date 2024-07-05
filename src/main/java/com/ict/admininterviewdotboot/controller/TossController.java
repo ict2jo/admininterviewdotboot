@@ -32,11 +32,6 @@ public class TossController {
     @PostMapping("/cancel")
     public ResponseEntity<TossVO> cancelPayment(@RequestBody TossVO tvo, @RequestHeader("Authorization") String authorizationHeader) {
         try {
-            System.out.println("티아이디"+tvo.getT_idx());
-            System.out.println("페이먼츠키"+tvo.getPaymentKey());
-            System.out.println("사유사유사유"+tvo.getCancelReason());
-            System.out.println("z키키키키ㅣ키"+authorizationHeader);
-            System.out.println("에이아이디"+tvo.getA_id());
             boolean isCanceled = tossService.cancelPayment(
                 tvo.getPaymentKey(),
                 tvo.getT_idx(),
@@ -50,7 +45,7 @@ public class TossController {
                 return ResponseEntity.status(400).body(new TossVO());
             }
         } catch (Exception e) {
-            System.out.println("컨트롤러" + e );
+            System.out.println("error" + e );
         }
         return null;
     }
