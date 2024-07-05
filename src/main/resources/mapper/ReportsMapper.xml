@@ -4,6 +4,11 @@
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.ict.admininterviewdotboot.mapper.ReportMapper">
+    <select id="getuserlist" resultType="UsersVO">
+        SELECT *
+            FROM User_t
+            ORDER BY u_idx DESC;
+    </select>
     <select id="getreportlist" resultType="ReportVO">
         SELECT *
             FROM Report_t
@@ -38,6 +43,16 @@
     <update id="getreportclick4" parameterType="String">
         UPDATE Report_t
             SET a_id = #{a_id}
+            WHERE u_idx = #{u_idx}
+    </update>
+    <update id="getuserdelete" parameterType="String">
+        UPDATE User_t
+            SET active = 1
+            WHERE u_idx = #{u_idx}
+    </update>
+    <update id="getuserlive" parameterType="String">
+        UPDATE User_t
+            SET active = 0
             WHERE u_idx = #{u_idx}
     </update>
 </mapper>
