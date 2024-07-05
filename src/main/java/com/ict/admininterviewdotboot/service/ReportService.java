@@ -7,7 +7,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ict.admininterviewdotboot.mapper.ReportMapper;
+import com.ict.admininterviewdotboot.vo.AdminVO;
 import com.ict.admininterviewdotboot.vo.ReportVO;
+import com.ict.admininterviewdotboot.vo.UsersVO;
 @Service
 public class ReportService {
     @Autowired
@@ -15,6 +17,9 @@ public class ReportService {
     
     public List<ReportVO> getreportlist(){
         return reportMapper.getreportlist();
+    }
+    public List<UsersVO> getuserlist(){
+        return reportMapper.getuserlist();
     }
     
     public List<ReportVO> getReportDetail(String rep_idx){
@@ -35,5 +40,10 @@ public class ReportService {
                 throw new RuntimeException("업데이트 중 오류 발생");
             }
         }
-
+    public int getuserlive(UsersVO uvo){
+        return reportMapper.getuserlive(uvo);
+    }
+    public int getuserdelete(UsersVO uvo){
+        return reportMapper.getuserdelete(uvo);
+    }
 }
