@@ -1,0 +1,8 @@
+package com.ict.admininterviewdotboot.vo;
+
+import lombok.Data;
+
+@Data
+public class CommentVO {
+    private String re_idx, r_idx, u_idx, id, re_content, hit, group, step, lev, active;
+}
