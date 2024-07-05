@@ -38,10 +38,6 @@ public class TossService {
 
     public boolean cancelPayment(String paymentKey, String t_idx, String authorizationHeader, String cancelReason, String a_id) {
             try {
-                System.out.println("페이먼츠키22"+paymentKey);
-                System.out.println("티티티아이디나오낭ㅇㅇㅇ" + t_idx);
-
-    
                 RestTemplate restTemplate = new RestTemplate();
                 // UTF-8 인코딩 설정 추가
                 restTemplate.getMessageConverters()
@@ -93,11 +89,11 @@ public class TossService {
             }
             return true;
         }
-
+    
     public List<UsersVO> userList() {
         return tossMapper.userList();
     }
-
+    
     public List<InterviewVO> interviewList() {
         return tossMapper.interviewList();
     }

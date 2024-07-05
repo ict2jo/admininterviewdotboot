@@ -10,13 +10,9 @@ import com.ict.admininterviewdotboot.vo.UsersVO;
 
 @Mapper
 public interface TossMapper {
-
     List<TossVO> payList();
-
     int cancelPayment(TossVO tvo);
     int userPayCount2(TossVO tvo);
-
     List<UsersVO> userList();
-
     List<InterviewVO> interviewList();
 }
