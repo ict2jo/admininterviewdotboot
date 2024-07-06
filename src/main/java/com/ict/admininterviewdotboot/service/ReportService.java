@@ -5,6 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ict.admininterviewdotboot.mapper.ReportMapper;
 import com.ict.admininterviewdotboot.vo.AdminVO;
@@ -45,5 +49,12 @@ public class ReportService {
     }
     public int getuserdelete(UsersVO uvo){
         return reportMapper.getuserdelete(uvo);
+    }
+
+    public List<UsersVO> getUserDetail(String u_idx) {
+        return reportMapper.getUserDetail(u_idx);
+    }
+    public int getUseredit(UsersVO uvo) {
+        return reportMapper.getUseredit(uvo);
     }
 }

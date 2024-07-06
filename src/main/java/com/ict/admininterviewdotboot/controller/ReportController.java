@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ict.admininterviewdotboot.service.ReportService;
-import com.ict.admininterviewdotboot.vo.InquiryVO;
 import com.ict.admininterviewdotboot.vo.ReportVO;
 import com.ict.admininterviewdotboot.vo.UsersVO;
 
@@ -54,5 +53,13 @@ public class ReportController {
     @PostMapping("/userlive")
     public int getuserlive(UsersVO uvo) {
         return reportService.getuserlive(uvo);
+    }
+    @GetMapping("/userdetail")
+    public List<UsersVO> getUserDetail(@RequestParam("u_idx") String u_idx) {
+        return reportService.getUserDetail(u_idx);
+    }
+    @PostMapping("/useredit")
+    public int getUseredit(@RequestBody UsersVO uvo) {
+        return reportService.getUseredit(uvo);
     }
 }

@@ -34,7 +34,7 @@ public class AdminController {
         return adminService.getAdminDetail(a_idx);
     }
     @PostMapping("/adminedit")
-    public  ResponseEntity<?> createUser(@RequestBody AdminVO avo) {
+    public  ResponseEntity<?> editAdmin(@RequestBody AdminVO avo) {
         int res = adminService.editadmin(avo);
         return new ResponseEntity<>(res, HttpStatus.CREATED);
     }
