@@ -38,12 +38,12 @@
         UPDATE Report_t
             SET rep_active = 1,
             rep_okdate = NOW()
-            WHERE u_idx = #{u_idx}
+            WHERE r_idx = #{r_idx} OR s_idx = #{s_idx}
     </update>
     <update id="getreportclick4" parameterType="String">
         UPDATE Report_t
             SET a_id = #{a_id}
-            WHERE u_idx = #{u_idx}
+            WHERE r_idx = #{r_idx} OR s_idx = #{s_idx}
     </update>
     <update id="getuserdelete" parameterType="String">
         UPDATE User_t
