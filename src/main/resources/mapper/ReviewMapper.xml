@@ -2,13 +2,12 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
 <mapper namespace="com.ict.admininterviewdotboot.mapper.ReviewMapper">
     <select id="getReviewList" resultType="ReviewVO">
-        SELECT * FROM Review_t ORDER BY r_idx
+        SELECT * FROM Review_t ORDER BY r_idx DESC
     </select>
     <select id="getReviewDetail" resultType="ReviewVO">
-        SELECT * FROM Review_t WHERE idx = #{r_idx}
+        SELECT * FROM Review_t WHERE r_idx = #{r_idx}
     </select>
     <update id="deleteReview" parameterType="ReviewVO">
         UPDATE Review_t

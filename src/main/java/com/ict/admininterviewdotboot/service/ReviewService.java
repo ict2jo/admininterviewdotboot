@@ -25,5 +25,9 @@ public class ReviewService {
     public int deleteReview(ReviewVO reviewVO){
         return reviewMapper.deleteReview(reviewVO);
     }
+    // public boolean deleteReview(ReviewVO rvo){
+    //     int res = reviewMapper.deleteReview(rvo);
+    //     return res > 0;
+    // }
     
 } 
