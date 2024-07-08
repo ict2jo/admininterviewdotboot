@@ -55,4 +55,16 @@
             SET active = 0
             WHERE u_idx = #{u_idx}
     </update>
+    <select id="getUserDetail" resultType="UsersVO" parameterType="String">
+        SELECT *
+            FROM User_t
+            WHERE u_idx = #{u_idx}
+    </select>
+    <update id="getUseredit" parameterType="String">
+        UPDATE User_t
+            SET email = #{email}, 
+            phonenumber = #{phonenumber},
+            name = #{name} 
+            WHERE u_idx = #{u_idx}
+    </update>
 </mapper>

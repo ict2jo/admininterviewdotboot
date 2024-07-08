@@ -18,4 +18,6 @@ public interface ReportMapper {
     int getreportclick4(ReportVO rvo);
     int getuserlive(UsersVO uvo);
     int getuserdelete(UsersVO uvo);
+    public List<UsersVO> getUserDetail(String u_idx);
+    public int getUseredit(UsersVO uvo);
 }
