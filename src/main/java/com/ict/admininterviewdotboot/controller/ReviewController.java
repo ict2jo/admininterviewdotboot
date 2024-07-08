@@ -20,7 +20,7 @@ public class ReviewController {
     @Autowired
     ReviewService reviewService;
     
-     @GetMapping("/reviewlist")
+    @GetMapping("/reviewlist")
     public List<ReviewVO> getReviewList() {
         return reviewService.getReviewList();
     }
@@ -28,8 +28,19 @@ public class ReviewController {
     public List<ReviewVO> getReviewDetail(){
         return reviewService.getReviewDetail();
     }
+    // @PostMapping("/deletereview")
+    // public ResponseEntity<String> deleteReview(@RequestBody ReviewVO rvo) {
+    //     boolean res = reviewService.deleteReview(rvo);
+    //     if(res){
+    //         return ResponseEntity.ok("성공");
+    //     }else{
+    //         return ResponseEntity.status(400).body("실패");
+    //     }
+        
+    // }
+
     @PostMapping("/deletereview")
-    public int deleteReview(@RequestBody ReviewVO reviewVO) {
+        public int deleteReview(@RequestBody ReviewVO reviewVO) {
         reviewVO.setActive("1");
         return reviewService.deleteReview(reviewVO);
     }
